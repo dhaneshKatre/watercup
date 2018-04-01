@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "818026461701",
+    "firebase_url": "https://watercup-2b1e8.firebaseio.com",
+    "project_id": "watercup-2b1e8",
+    "storage_bucket": "watercup-2b1e8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:818026461701:android:0ecf39866220f3bb",
+        "android_client_info": {
+          "package_name": "com.dk.watercup"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "818026461701-6m5emkqqv04jon4smhmhn1jaedvcu81a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dk.watercup",
+            "certificate_hash": "1e4e6e058e03425fd7c3c6f5d02169f4384cef11"
+          }
+        },
+        {
+          "client_id": "818026461701-1310996d7ph53gborvq3fo2e24uk3b9n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBoLkcoRCfdk4-3rEyMXjg5_7_2e4NLV00"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "818026461701-1310996d7ph53gborvq3fo2e24uk3b9n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

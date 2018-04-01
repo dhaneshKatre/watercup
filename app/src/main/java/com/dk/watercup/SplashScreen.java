@@ -3,6 +3,7 @@ package com.dk.watercup;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.LinearLayout;
@@ -13,6 +14,7 @@ public class SplashScreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_splash_screen);
         AlphaAnimation animation = new AlphaAnimation(0.0f, 1.0f);
         animation.setDuration(2000);
@@ -26,7 +28,12 @@ public class SplashScreen extends AppCompatActivity {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                startActivity(new Intent(SplashScreen.this, DashboardActivity.class));
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                startActivity(new Intent(SplashScreen.this, LoginActivity.class));
                 finish();
             }
 
@@ -36,8 +43,6 @@ public class SplashScreen extends AppCompatActivity {
             }
         });
         TextView data = findViewById(R.id.data);
-        LinearLayout layout = findViewById(R.id.imageDisplay);
         data.setAnimation(animation);
-        layout.setAnimation(animation);
     }
 }

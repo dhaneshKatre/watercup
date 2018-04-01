@@ -1,3 +1,15 @@
 <resources>
-    <string name="app_name">watercup</string>
+    <string name="app_name">Watercup</string>
+    <string name="Entercost">Enter total project cost</string>
+    <string name="Enterdesc">Enter project description</string>
+    <string name="selectImage">Select an image to upload</string>
+    <string name="reg_form">Registration Form</string>
+    <string name="v_name">Enter name of village</string>
+    <string name="t_name">Enter taluka of village</string>
+    <string name="ph_no">Enter contact number</string>
+    <string name="done">Done</string>
+    <string name="language">Change app language</string>
+    <string name="about">About</string>
+    <string name="feedback">Feedback</string>
+    <string name="logout">Log out</string>
 </resources>
