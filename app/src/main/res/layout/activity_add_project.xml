@@ -40,8 +40,17 @@
             </RelativeLayout>
 
             <EditText
+                android:hint="@string/Entername"
+                android:layout_marginTop="15dp"
+                android:id="@+id/name"
+                android:inputType="textCapWords"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <EditText
                 android:hint="@string/Entercost"
                 android:layout_marginTop="15dp"
+                android:inputType="number"
                 android:id="@+id/cost"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />

@@ -2,10 +2,16 @@ package com.dk.watercup;
 
 public class NewProjectModel {
 
-    private String type, cost, desc;
+    private String type, cost, desc, name;
 
     public NewProjectModel() {
+    }
+    public String getName() {
+        return name;
+    }
 
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getType() {
@@ -32,8 +38,8 @@ public class NewProjectModel {
         this.desc = desc;
     }
 
-    public NewProjectModel(String type, String cost, String desc) {
-
+    public NewProjectModel(String name, String type, String cost, String desc) {
+        this.name = name;
         this.type = type;
         this.cost = cost;
         this.desc = desc;

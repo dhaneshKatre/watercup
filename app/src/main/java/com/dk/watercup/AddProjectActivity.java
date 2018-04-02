@@ -2,9 +2,9 @@ package com.dk.watercup;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatButton;
@@ -28,6 +28,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 
 public class AddProjectActivity extends AppCompatActivity {
@@ -38,15 +39,17 @@ public class AddProjectActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        switch(requestCode) {
-            case 0:
-                if(resultCode == RESULT_OK){
-                    finalImage = data.getData();
-                    iv.setImageURI(finalImage);
-                    msg.setVisibility(View.GONE);
-                }
-                break;
+        if(requestCode == 0 && resultCode == RESULT_OK && data!=null){
+            Bitmap photo = (Bitmap) data.getExtras().get("data");
+            iv.setImageBitmap(photo);
+            ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+            photo.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+            String path = MediaStore.Images.Media.insertImage(AddProjectActivity.this.getContentResolver(), photo, "project", null );
+            finalImage = Uri.parse(path);
+            msg.setVisibility(View.GONE);
+        }
+        else {
+            Toast.makeText(this, "Permission issues!", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -87,22 +90,21 @@ public class AddProjectActivity extends AppCompatActivity {
         });
 
         final EditText cost = findViewById(R.id.cost);
-        cost.clearFocus();
         final EditText desc = findViewById(R.id.desc);
-        desc.clearFocus();
+        final EditText name = findViewById(R.id.name);
 
         final AppCompatButton doneButton = findViewById(R.id.doneButton);
         doneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                pd.show();
                 if(projectType.getSelectedItemPosition() == 0){
                     Toast.makeText(AddProjectActivity.this, "Specify project type!", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 String projectCost = cost.getText().toString().trim();
                 String description = desc.getText().toString().trim();
-                if(TextUtils.isEmpty(projectCost) || TextUtils.isEmpty(description)){
+                String Name = name.getText().toString().trim();
+                if(TextUtils.isEmpty(projectCost) || TextUtils.isEmpty(description) || TextUtils.isEmpty(Name)){
                     Toast.makeText(AddProjectActivity.this, "Enter proper values!", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -111,26 +113,27 @@ public class AddProjectActivity extends AppCompatActivity {
                     return;
                 }
                 String project = projectType.getSelectedItem().toString();
-                final NewProjectModel npm = new NewProjectModel(project, projectCost, description);
+                final NewProjectModel npm = new NewProjectModel(Name, project, projectCost, description);
                 final String newID = projects.child(user.getUid()).push().getKey();
+                pd.show();
                 villageRef.child(user.getUid()).child(newID).putFile(finalImage)
                         .addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                             @Override
-                            public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                            public void onComplete(Task<UploadTask.TaskSnapshot> task) {
                                 pd.dismiss();
                                 finish();
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
                             @Override
-                            public void onFailure(@NonNull Exception e) {
-
+                            public void onFailure(Exception e) {
+                                Toast.makeText(AddProjectActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         });
                 projects.child(user.getUid()).child(newID).setValue(npm)
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
-                            public void onComplete(@NonNull Task<Void> task) {
+                            public void onComplete(Task<Void> task) {
                                 if(task.isSuccessful()){
                                     Toast.makeText(AddProjectActivity.this, "Text Uploaded!", Toast.LENGTH_SHORT).show();
                                 } else {
@@ -140,7 +143,7 @@ public class AddProjectActivity extends AppCompatActivity {
                         })
                         .addOnFailureListener(new OnFailureListener() {
                             @Override
-                            public void onFailure(@NonNull Exception e) {
+                            public void onFailure(Exception e) {
                                 Toast.makeText(AddProjectActivity.this, "Error!", Toast.LENGTH_SHORT).show();
                             }
                         });
