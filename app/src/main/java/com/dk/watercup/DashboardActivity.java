@@ -38,6 +38,14 @@ public class DashboardActivity extends AppCompatActivity {
                 startActivity(new Intent(DashboardActivity.this, AddProjectActivity.class));
             }
         });
+
+        final CardView helpCard = findViewById(R.id.helpCard);
+        helpCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(DashboardActivity.this, HelpActivity.class));
+            }
+        });
     }
 
     @Override

@@ -1,188 +1,151 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    android:background="#efefef"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#efefef"
     tools:context=".DashboardActivity">
 
     <LinearLayout
-        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:padding="10dp">
 
         <android.support.v7.widget.CardView
-<<<<<<< HEAD
-=======
-            android:elevation="5dp"
-            android:clipToPadding="false"
-            android:layout_marginBottom="15dp"
->>>>>>> 915f3ac2c99f6227759b27f05fb1163c8d3242b6
+            app:cardCornerRadius="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
+            android:layout_marginBottom="15dp"
             android:clipToPadding="false"
             android:elevation="5dp">
 
-<<<<<<< HEAD
-            <TextView
-                android:id="@+id/storage_text_view"
-                style="@style/Base.TextAppearance.AppCompat"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:text="Days remaining: " />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:padding="10dp">
 
-            <ProgressBar
-                android:id="@+id/storage_progress_bar"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="75dp"
-                android:layout_height="75dp"
-                android:layout_centerInParent="true"
-                android:layout_margin="15dp"
-                android:background="@drawable/circle_shape"
-                android:indeterminate="false"
-                android:max="100"
-                android:progress="75"
-                android:progressDrawable="@drawable/circular_progress_bar" />
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:gravity="center_horizontal|center_vertical">
 
-            <TextView
-                android:id="@+id/tv_inside_progress"
-                style="@style/Base.TextAppearance.AppCompat"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_marginTop="15dp"
-                android:text="100" />
-=======
-           <LinearLayout
-               android:padding="10dp"
-               android:orientation="horizontal"
-               android:layout_width="match_parent"
-               android:layout_height="match_parent">
+                    <TextView
+                        android:id="@+id/storage_text_view"
+                        style="@style/Base.TextAppearance.AppCompat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:text="@string/daysRem"
+                        android:textSize="18sp" />
 
-               <RelativeLayout
-                   android:layout_gravity="center_vertical|center_horizontal"
-                   android:gravity="center_horizontal|center_vertical"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content">
+                    <ProgressBar
+                        android:id="@+id/daysRem"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="95dp"
+                        android:layout_height="95dp"
+                        android:layout_centerInParent="true"
+                        android:layout_margin="15dp"
+                        android:background="@drawable/circle_shape"
+                        android:indeterminate="false"
+                        android:max="100"
+                        android:progress="75"
+                        android:progressDrawable="@drawable/circular_progress_bar" />
 
-                   <TextView
-                       android:id="@+id/storage_text_view"
-                       style="@style/Base.TextAppearance.AppCompat"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:layout_alignParentStart="true"
-                       android:text="Days remaining: "
-                       android:textSize="18sp" />
+                    <TextView
+                        android:id="@+id/noOfDays"
+                        style="@style/Base.TextAppearance.AppCompat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:background="#00000000"
+                        android:text="25"
+                        android:textSize="20sp" />
 
-                   <ProgressBar
-                       android:id="@+id/daysRem"
-                       style="?android:attr/progressBarStyleHorizontal"
-                       android:layout_width="95dp"
-                       android:layout_height="95dp"
-                       android:layout_margin="15dp"
-                       android:layout_centerInParent="true"
-                       android:background="@drawable/circle_shape"
-                       android:indeterminate="false"
-                       android:max="100"
-                       android:progress="75"
-                       android:progressDrawable="@drawable/circular_progress_bar" />
+                </RelativeLayout>
 
-                   <TextView
-                       android:id="@+id/noOfDays"
-                       style="@style/Base.TextAppearance.AppCompat"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:layout_centerInParent="true"
-                       android:background="#00000000"
-                       android:text="25"
-                       android:textSize="20sp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:layout_margin="20dp"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:orientation="vertical"
+                    android:padding="20dp">
 
-               </RelativeLayout>
+                    <TextView
+                        style="@style/Base.TextAppearance.AppCompat"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="10dp"
+                        android:text="Rank: #1"
+                        android:textSize="20sp" />
 
-               <LinearLayout
-                   android:layout_gravity="center_vertical|center_horizontal"
-                   android:gravity="center_horizontal|center_vertical"
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:layout_margin="20dp"
-                   android:orientation="vertical"
-                   android:padding="20dp">
+                    <TextView
+                        style="@style/Base.TextAppearance.AppCompat"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Points: 50"
+                        android:textSize="20sp" />
 
-                   <TextView
-                       style="@style/Base.TextAppearance.AppCompat"
-                       android:layout_width="match_parent"
-                       android:layout_height="match_parent"
-                       android:layout_marginBottom="10dp"
-                       android:text="Rank: #1"
-                       android:textSize="20sp" />
+                </LinearLayout>
 
-                   <TextView
-                       style="@style/Base.TextAppearance.AppCompat"
-                       android:layout_width="match_parent"
-                       android:layout_height="match_parent"
-                       android:text="Points: 50"
-                       android:textSize="20sp" />
-
-               </LinearLayout>
-
-           </LinearLayout>
->>>>>>> 915f3ac2c99f6227759b27f05fb1163c8d3242b6
+            </LinearLayout>
 
         </android.support.v7.widget.CardView>
 
         <LinearLayout
-            android:gravity="center"
-            android:layout_marginBottom="10dp"
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            android:orientation="horizontal">
 
             <android.support.v7.widget.CardView
+                app:cardCornerRadius="8dp"
                 android:id="@+id/newProject"
-                android:layout_marginEnd="20dp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp">
 
                 <LinearLayout
-                    android:gravity="center"
-                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
                     <ImageView
-                        android:padding="5dp"
-                        android:layout_weight="0.07"
-                        android:src="@mipmap/ic_launcher_round"
                         android:layout_width="75dp"
-                        android:layout_height="0dp" />
+                        android:layout_height="0dp"
+                        android:layout_weight="0.07"
+                        android:padding="5dp"
+                        android:src="@mipmap/ic_launcher_round" />
 
                     <TextView
-                        android:textStyle="bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:padding="5dp"
                         android:text="New Project"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:textStyle="bold" />
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="#dedede"
-                        android:layout_margin="10dp" />
+                        android:layout_margin="10dp"
+                        android:background="#dedede" />
 
                     <TextView
-                        android:textStyle="bold"
-                        android:padding="5dp"
-                        android:textColor="#aeaeae"
-                        android:gravity="center"
-                        android:text="Add new project here"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:text="Add new project here"
+                        android:textColor="#aeaeae"
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 
@@ -190,44 +153,45 @@
             </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView
+                app:cardCornerRadius="8dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
                 <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center_horizontal"
                     android:gravity="center_horizontal"
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:orientation="vertical">
 
                     <ImageView
-                        android:padding="5dp"
-                        android:layout_weight="0.07"
-                        android:src="@mipmap/ic_launcher_round"
                         android:layout_width="75dp"
-                        android:layout_height="0dp" />
+                        android:layout_height="0dp"
+                        android:layout_weight="0.07"
+                        android:padding="5dp"
+                        android:src="@mipmap/ic_launcher_round" />
 
                     <TextView
-                        android:textStyle="bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:padding="5dp"
                         android:text="Leaderboard"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:textStyle="bold" />
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="#dedede"
-                        android:layout_margin="10dp" />
+                        android:layout_margin="10dp"
+                        android:background="#dedede" />
 
                     <TextView
-                        android:textStyle="bold"
-                        android:padding="5dp"
-                        android:textColor="#aeaeae"
-                        android:gravity="center"
-                        android:text="View Leaderboard here"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:text="View Leaderboard here"
+                        android:textColor="#aeaeae"
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 
@@ -237,51 +201,52 @@
         </LinearLayout>
 
         <LinearLayout
-            android:gravity="center"
-            android:layout_marginBottom="10dp"
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            android:orientation="horizontal">
 
             <android.support.v7.widget.CardView
-                android:layout_marginEnd="20dp"
+                app:cardCornerRadius="8dp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp">
 
                 <LinearLayout
-                    android:gravity="center"
-                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
                     <ImageView
-                        android:padding="5dp"
-                        android:layout_weight="0.07"
-                        android:src="@mipmap/ic_launcher_round"
                         android:layout_width="75dp"
-                        android:layout_height="0dp" />
+                        android:layout_height="0dp"
+                        android:layout_weight="0.07"
+                        android:padding="5dp"
+                        android:src="@mipmap/ic_launcher_round" />
 
                     <TextView
-                        android:textStyle="bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:padding="5dp"
                         android:text="Guide"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:textStyle="bold" />
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="#dedede"
-                        android:layout_margin="10dp" />
+                        android:layout_margin="10dp"
+                        android:background="#dedede" />
 
                     <TextView
-                        android:textStyle="bold"
-                        android:padding="5dp"
-                        android:textColor="#aeaeae"
-                        android:gravity="center"
-                        android:text="You'll get guidance"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:text="You'll get guidance"
+                        android:textColor="#aeaeae"
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 
@@ -289,44 +254,46 @@
             </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
+                app:cardCornerRadius="8dp"
+                android:id="@+id/helpCard"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
                 <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center_horizontal"
                     android:gravity="center_horizontal"
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:orientation="vertical">
 
                     <ImageView
-                        android:padding="5dp"
-                        android:layout_weight="0.07"
-                        android:src="@mipmap/ic_launcher_round"
                         android:layout_width="75dp"
-                        android:layout_height="0dp" />
+                        android:layout_height="0dp"
+                        android:layout_weight="0.07"
+                        android:padding="5dp"
+                        android:src="@mipmap/ic_launcher_round" />
 
                     <TextView
-                        android:textStyle="bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:padding="5dp"
                         android:text="Help"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:textStyle="bold" />
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="#dedede"
-                        android:layout_margin="10dp" />
+                        android:layout_margin="10dp"
+                        android:background="#dedede" />
 
                     <TextView
-                        android:textStyle="bold"
-                        android:padding="5dp"
-                        android:textColor="#aeaeae"
-                        android:gravity="center"
-                        android:text="More help"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:text="More help"
+                        android:textColor="#aeaeae"
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 

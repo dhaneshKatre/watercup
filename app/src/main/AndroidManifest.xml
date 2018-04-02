@@ -23,15 +23,15 @@
             </intent-filter>
         </activity>
         <activity android:name=".DashboardActivity" />
-<<<<<<< HEAD
-        <activity android:name=".HelpActivity">
-            android:parentActivityName="com.dk.watercup.DashboardActivity>
+        <activity
+            android:name=".HelpActivity"
+            android:parentActivityName="com.dk.watercup.DashboardActivity">
         </activity>
-=======
         <activity android:name=".AddProjectActivity" />
-        <activity android:name=".LoginActivity" />
+        <activity
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:name=".LoginActivity" />
         <activity android:name=".FormActivity" />
->>>>>>> 915f3ac2c99f6227759b27f05fb1163c8d3242b6
     </application>
 
 </manifest>
