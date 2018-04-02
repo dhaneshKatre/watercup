@@ -2,6 +2,7 @@ package com.dk.watercup;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
@@ -28,6 +29,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 
 public class AddProjectActivity extends AppCompatActivity {
@@ -39,16 +41,25 @@ public class AddProjectActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        switch(requestCode) {
-            case 0:
-                if(resultCode == RESULT_OK){
-                    finalImage = data.getData();
-                    iv.setImageURI(finalImage);
-                    msg.setVisibility(View.GONE);
+        if (requestCode == 0) {
+            if (resultCode == RESULT_OK) {
+                if (data == null) {
+                    Toast.makeText(this, "DAta null!!", Toast.LENGTH_SHORT).show();
+                    return;
                 }
-                break;
+                Bitmap image = (Bitmap) data.getExtras().get("data");
+                iv.setImageBitmap(image);
+                ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+                image.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+                String path = MediaStore.Images.Media.insertImage(getApplicationContext().getContentResolver(), image, "Title", null);
+                finalImage = Uri.parse(path);
+                msg.setVisibility(View.GONE);
+            } else if (resultCode == RESULT_CANCELED) {
+                Toast.makeText(this, "CANCELED ", Toast.LENGTH_LONG).show();
+            }
         }
     }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,9 +98,8 @@ public class AddProjectActivity extends AppCompatActivity {
         });
 
         final EditText cost = findViewById(R.id.cost);
-        cost.clearFocus();
         final EditText desc = findViewById(R.id.desc);
-        desc.clearFocus();
+
 
         final AppCompatButton doneButton = findViewById(R.id.doneButton);
         doneButton.setOnClickListener(new View.OnClickListener() {
