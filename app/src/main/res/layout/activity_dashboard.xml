@@ -15,6 +15,7 @@
         android:padding="10dp">
 
         <android.support.v7.widget.CardView
+            android:id="@+id/stats"
             app:cardCornerRadius="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -53,7 +54,7 @@
                         android:background="@drawable/circle_shape"
                         android:indeterminate="false"
                         android:max="100"
-                        android:progress="75"
+                        android:progress="100"
                         android:progressDrawable="@drawable/circular_progress_bar" />
 
                     <TextView
