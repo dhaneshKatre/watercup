@@ -1,4 +1,8 @@
 <resources>
+    <string name="Your_Coordinator">Your Co-ordinator</string>
+    <string name="About_us">About Us</string>
+    <string name="Desc">Paani Foundation is a not-for-profit company set up in 2016 by the team of the TV series Satyamev Jayate to fight drought in rural Maharashtra. Water scarcity is largely a man-made condition, and we believe that only people’s efforts can solve the crisis. Paani Foundation aims to harness the power of communication to mobilise, motivate and train people in this mission to eradicate drought. Offering training in scientific watershed management, leadership and community-building, Paani Foundation is now working in roughly 90% of drought-hit Maharashtra. Our flagship project, the Satyamev Jayate Water Cup was instituted in 2016 as a way to encourage villages to apply their training in watershed management. Water Cup 2018 will be held from 8th April to 22nd May 2018</string>
+    <string name="Help">Help</string>
     <string name="app_name">Watercup</string>
     <string name="Entercost">Enter total project cost</string>
     <string name="Enterdesc">Enter project description</string>
@@ -12,4 +16,5 @@
     <string name="about">About</string>
     <string name="feedback">Feedback</string>
     <string name="logout">Log out</string>
+    <string name="daysRem">Days remaining</string>
 </resources>

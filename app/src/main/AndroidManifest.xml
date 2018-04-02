@@ -23,8 +23,14 @@
             </intent-filter>
         </activity>
         <activity android:name=".DashboardActivity" />
+        <activity
+            android:name=".HelpActivity"
+            android:parentActivityName="com.dk.watercup.DashboardActivity">
+        </activity>
         <activity android:name=".AddProjectActivity" />
-        <activity android:name=".LoginActivity" />
+        <activity
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:name=".LoginActivity" />
         <activity android:name=".FormActivity" />
     </application>
 
