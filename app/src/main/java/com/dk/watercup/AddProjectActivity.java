@@ -39,6 +39,7 @@ public class AddProjectActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+<<<<<<< HEAD
         if(requestCode == 0 && resultCode == RESULT_OK && data!=null){
             Bitmap photo = (Bitmap) data.getExtras().get("data");
             iv.setImageBitmap(photo);
@@ -50,8 +51,28 @@ public class AddProjectActivity extends AppCompatActivity {
         }
         else {
             Toast.makeText(this, "Permission issues!", Toast.LENGTH_SHORT).show();
+=======
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 0) {
+            if (resultCode == RESULT_OK) {
+                if (data == null) {
+                    Toast.makeText(this, "DAta null!!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                Bitmap image = (Bitmap) data.getExtras().get("data");
+                iv.setImageBitmap(image);
+                ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+                image.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+                String path = MediaStore.Images.Media.insertImage(getApplicationContext().getContentResolver(), image, "Title", null);
+                finalImage = Uri.parse(path);
+                msg.setVisibility(View.GONE);
+            } else if (resultCode == RESULT_CANCELED) {
+                Toast.makeText(this, "CANCELED ", Toast.LENGTH_LONG).show();
+            }
+>>>>>>> 9c7c6c8dfa6ac6ef18b1be27acecbda9a91f5642
         }
     }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,7 +112,11 @@ public class AddProjectActivity extends AppCompatActivity {
 
         final EditText cost = findViewById(R.id.cost);
         final EditText desc = findViewById(R.id.desc);
+<<<<<<< HEAD
         final EditText name = findViewById(R.id.name);
+=======
+
+>>>>>>> 9c7c6c8dfa6ac6ef18b1be27acecbda9a91f5642
 
         final AppCompatButton doneButton = findViewById(R.id.doneButton);
         doneButton.setOnClickListener(new View.OnClickListener() {

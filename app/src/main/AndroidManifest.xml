@@ -4,7 +4,11 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+<<<<<<< HEAD
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+=======
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+>>>>>>> 9c7c6c8dfa6ac6ef18b1be27acecbda9a91f5642
 
     <application
         android:allowBackup="true"
@@ -15,7 +19,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".SplashScreen"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,8 +32,13 @@
             android:parentActivityName=".DashboardActivity"></activity>
         <activity android:name=".AddProjectActivity" />
         <activity
+<<<<<<< HEAD
             android:name=".LoginActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
+=======
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:name=".LoginActivity" />
+>>>>>>> 9c7c6c8dfa6ac6ef18b1be27acecbda9a91f5642
         <activity android:name=".FormActivity" />
         <activity android:name=".StatsActivity"></activity>
     </application>
