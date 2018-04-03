@@ -25,14 +25,16 @@ public class LeaderboardActivity extends AppCompatActivity {
         DatabaseReference dbref = database.getReference("village");
 
         final RecyclerView pplview = findViewById(R.id.leaderBoardView);
-        pplview.setLayoutManager(new LinearLayoutManager(this ));
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        layoutManager.setReverseLayout(true);
+        pplview.setLayoutManager(layoutManager);
 
         FirebaseRecyclerAdapter<VillageModel, VillageHolder> adapter =
                 new FirebaseRecyclerAdapter<VillageModel, VillageHolder>(
                 VillageModel.class,
                 R.layout.village_item,
                 VillageHolder.class,
-                dbref
+                dbref.orderByChild("points")
         ) {
             @Override
             protected void populateViewHolder(VillageHolder viewHolder, VillageModel model, int i) {
