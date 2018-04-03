@@ -18,4 +18,6 @@
     <string name="logout">Log out</string>
     <string name="daysRem">Days remaining</string>
     <string name="Entername">Enter project name</string>
+    <string name="type">Type:</string>
+    <string name="English">मराठी</string>
 </resources>

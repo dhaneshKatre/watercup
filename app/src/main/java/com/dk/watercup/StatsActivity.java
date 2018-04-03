@@ -99,6 +99,7 @@ public class StatsActivity extends AppCompatActivity {
                 viewHolder.setTextCost(model.getCost());
                 viewHolder.setTextName(model.getName());
                 viewHolder.setTextDesc(model.getDesc());
+                viewHolder.setTextType(model.getType());
                 viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
