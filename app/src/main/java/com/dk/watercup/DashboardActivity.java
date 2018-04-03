@@ -115,6 +115,14 @@ public class DashboardActivity extends AppCompatActivity {
                 startActivity(new Intent(DashboardActivity.this, HelpActivity.class));
             }
         });
+
+        final CardView leaderBoard = findViewById(R.id.leaderBoard);
+        leaderBoard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(DashboardActivity.this,LeaderboardActivity.class));
+            }
+        });
     }
 
     @Override
