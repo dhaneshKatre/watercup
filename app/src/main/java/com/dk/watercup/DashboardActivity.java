@@ -1,10 +1,14 @@
 package com.dk.watercup;
 
+import android.Manifest;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
@@ -48,7 +52,10 @@ public class DashboardActivity extends AppCompatActivity {
 
         db = new SQLiteHelper(this);
 
-        Toast.makeText(this, db.getAllValues().toString(), Toast.LENGTH_SHORT).show();
+        if(ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED &&
+                ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
+        }
 
         auth = FirebaseAuth.getInstance();
         if(auth.getCurrentUser()==null){
@@ -60,13 +67,13 @@ public class DashboardActivity extends AppCompatActivity {
         final FirebaseUser user = auth.getCurrentUser();
         final ProgressBar daysRem = (ProgressBar) findViewById(R.id.daysRem);
         final TextView noOfDays = findViewById(R.id.noOfDays);
-        final TextView pointView = findViewById(R.id.pointView);
-        final DatabaseReference ref = FirebaseDatabase.getInstance().getReference(user.getUid()).child("points");
-        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+        final TextView pointView = findViewById(R.id.pointsView);
+        final DatabaseReference ref = FirebaseDatabase.getInstance().getReference("village").child(user.getUid()).child("points");
+        ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String points = dataSnapshot.getValue(Integer.class) + "";
-                pointView.setText(points);
+                pointView.setText("Points: " + points);
             }
 
             @Override
@@ -107,10 +114,6 @@ public class DashboardActivity extends AppCompatActivity {
         });
 
 
-
-
-
-
         final CardView newProject = findViewById(R.id.newProject);
         newProject.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,6 +127,14 @@ public class DashboardActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(DashboardActivity.this, StatsActivity.class));
+            }
+        });
+
+        final CardView guide = findViewById(R.id.help);
+        guide.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(DashboardActivity.this, GuideActivity.class));
             }
         });
 

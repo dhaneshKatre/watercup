@@ -58,6 +58,21 @@ public class StatsActivity extends AppCompatActivity {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = database.getReference("final_date");
 
+        final TextView statsPointsView = findViewById(R.id.statsPointsView);
+        final DatabaseReference ref = FirebaseDatabase.getInstance().getReference("village").child(user.getUid()).child("points");
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String points = dataSnapshot.getValue(Integer.class) + "";
+                statsPointsView.setText("Points: " + points);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
         final ProgressBar daysRem = (ProgressBar) findViewById(R.id.daysRem);
         final TextView noOfDays = findViewById(R.id.noOfDays);
         final SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);

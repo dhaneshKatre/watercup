@@ -97,7 +97,7 @@
                         android:textSize="20sp" />
 
                     <TextView
-                        android:id="@+id/pointView"
+                        android:id="@+id/pointsView"
                         style="@style/Base.TextAppearance.AppCompat"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
