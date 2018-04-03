@@ -8,7 +8,7 @@ public class ProjectHolder extends RecyclerView.ViewHolder {
 
     private TextView textName, textCost, textDesc;
 
-    public ProjectHolder(View itemView) {
+    public ProjectHolder(final View itemView) {
         super(itemView);
         textName = itemView.findViewById(R.id.textName);
         textCost = itemView.findViewById(R.id.textCost);
