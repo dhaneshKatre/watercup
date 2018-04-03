@@ -6,13 +6,14 @@ import android.widget.TextView;
 
 public class ProjectHolder extends RecyclerView.ViewHolder {
 
-    private TextView textName, textCost, textDesc;
+    private TextView textName, textCost, textDesc,textType;
 
     public ProjectHolder(final View itemView) {
         super(itemView);
         textName = itemView.findViewById(R.id.textName);
         textCost = itemView.findViewById(R.id.textCost);
         textDesc = itemView.findViewById(R.id.textDesc);
+        textType = itemView.findViewById(R.id.textType);
     }
 
     public void setTextName(String textName) {
@@ -26,4 +27,6 @@ public class ProjectHolder extends RecyclerView.ViewHolder {
     public void setTextDesc(String textDesc) {
         this.textDesc.setText(textDesc);
     }
+
+    public void setTextType(String textType) { this.textType.setText(textType);}
 }

@@ -9,7 +9,8 @@
     tools:context=".SplashScreen">
 
     <TextView
-        android:drawableTop="@mipmap/ic_launcher"
+        android:drawableTop="@drawable/app_icon"
+        android:gravity="center_horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/data"

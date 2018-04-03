@@ -16,7 +16,12 @@
     <string name="logout">Log out</string>
     <string name="daysRem">Days remaining</string>
     <string name="Entername">Enter project name</string>
+<<<<<<< HEAD
     <string name="Enterdesc">Enter project description</string>
     <string name="feedback">Feedb</string>
     <string name="logout">L</string>
+=======
+    <string name="type">Type:</string>
+    <string name="English">मराठी</string>
+>>>>>>> f2b3f2cc1ba3a43363748505394893680f56c954
 </resources>

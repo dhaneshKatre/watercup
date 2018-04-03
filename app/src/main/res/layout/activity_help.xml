@@ -36,6 +36,12 @@
                     android:textColor="@color/colorAccent"
                     android:textSize="25sp" />
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#dedede"
+                    android:layout_margin="10dp"/>
+
                 <TextView
                     android:id="@+id/tvCoordinator"
                     style="@style/Base.TextAppearance.AppCompat"
