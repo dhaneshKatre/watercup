@@ -1,18 +1,25 @@
 package com.dk.watercup;
 
 import android.animation.ObjectAnimator;
+import android.app.Dialog;
+import android.app.ProgressDialog;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -20,7 +27,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
+import java.io.File;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -30,6 +42,7 @@ import java.util.concurrent.TimeUnit;
 public class StatsActivity extends AppCompatActivity {
 
     private FirebaseRecyclerAdapter<NewProjectModel, ProjectHolder> adapter;
+    private FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +50,7 @@ public class StatsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_stats);
 
         final DatabaseReference projectRef = FirebaseDatabase.getInstance().getReference("projects");
-        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        user = FirebaseAuth.getInstance().getCurrentUser();
 
         final RecyclerView projectRecView = findViewById(R.id.projectRecView);
         projectRecView.setLayoutManager(new LinearLayoutManager(this));
@@ -82,14 +95,18 @@ public class StatsActivity extends AppCompatActivity {
                 projectRef.child(user.getUid())
         ) {
             @Override
-            protected void populateViewHolder(ProjectHolder viewHolder, NewProjectModel model, final int position) {
+            protected void populateViewHolder(ProjectHolder viewHolder, final NewProjectModel model, final int position) {
                 viewHolder.setTextCost(model.getCost());
                 viewHolder.setTextName(model.getName());
                 viewHolder.setTextDesc(model.getDesc());
                 viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        showToast(position);
+                        try {
+                            showImage(position, model.getName());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     }
                 });
             }
@@ -97,7 +114,30 @@ public class StatsActivity extends AppCompatActivity {
         projectRecView.setAdapter(adapter);
     }
 
-    public void showToast(int p){
-        Toast.makeText(StatsActivity.this, adapter.getRef(p).getKey(), Toast.LENGTH_SHORT).show();
+    public void showImage(final int pos, final String name) throws IOException {
+        final ProgressDialog pd = new ProgressDialog(StatsActivity.this);
+        pd.setTitle("Please wait ...");
+        final Dialog dialog = new Dialog(StatsActivity.this);
+        dialog.setContentView(R.layout.image_dialog);
+        dialog.setCancelable(true);
+        final TextView projectName = dialog.findViewById(R.id.projectName);
+        final File localFile = File.createTempFile("images", "jpg");
+        pd.show();
+        final StorageReference imageRef = FirebaseStorage.getInstance().getReference(user.getUid()).child(adapter.getRef(pos).getKey());
+        imageRef.getFile(localFile)
+                .addOnCompleteListener(new OnCompleteListener<FileDownloadTask.TaskSnapshot>() {
+                    @Override
+                    public void onComplete(Task<FileDownloadTask.TaskSnapshot> task) {
+                        pd.dismiss();
+                        if(task.isSuccessful()){
+                            projectName.setText(name);
+                            Bitmap image = BitmapFactory.decodeFile(localFile.getAbsolutePath());
+                            projectName.setCompoundDrawables(null, null, null, new BitmapDrawable(getResources(), image));
+                            dialog.show();
+                        } else {
+                            Toast.makeText(StatsActivity.this, "Network!!", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
     }
 }
