@@ -97,10 +97,10 @@
                         android:textSize="20sp" />
 
                     <TextView
+                        android:id="@+id/pointView"
                         style="@style/Base.TextAppearance.AppCompat"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="Points: 50"
                         android:textSize="20sp" />
 
                 </LinearLayout>

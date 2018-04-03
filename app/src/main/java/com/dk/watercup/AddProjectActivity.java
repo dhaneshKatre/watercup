@@ -22,8 +22,11 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -128,23 +131,48 @@ public class AddProjectActivity extends AppCompatActivity {
                                 Toast.makeText(AddProjectActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         });
-                projects.child(user.getUid()).child(newID).setValue(npm)
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(Task<Void> task) {
-                                if(task.isSuccessful()){
-                                    Toast.makeText(AddProjectActivity.this, "Text Uploaded!", Toast.LENGTH_SHORT).show();
-                                } else {
-                                    Toast.makeText(AddProjectActivity.this, "Check Network!", Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(Exception e) {
-                                Toast.makeText(AddProjectActivity.this, "Error!", Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                final DatabaseReference ref = FirebaseDatabase.getInstance().getReference("village").child(user.getUid()).child("points");
+                ref.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        int currentPoints = dataSnapshot.getValue(Integer.class);
+                        if(projectType.getSelectedItemPosition() == 1) currentPoints += 50;
+                        else if(projectType.getSelectedItemPosition() == 2) currentPoints += 100;
+                        else if(projectType.getSelectedItemPosition() == 3) currentPoints += 30;
+                        ref.setValue(currentPoints)
+                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(Task<Void> task) {
+                                        if(task.isSuccessful()){
+                                            projects.child(user.getUid()).child(newID).setValue(npm)
+                                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                        @Override
+                                                        public void onComplete(Task<Void> task) {
+                                                            if(task.isSuccessful()){
+                                                                Toast.makeText(AddProjectActivity.this, "Text Uploaded!", Toast.LENGTH_SHORT).show();
+                                                            } else {
+                                                                Toast.makeText(AddProjectActivity.this, "Check Network!", Toast.LENGTH_SHORT).show();
+                                                            }
+                                                        }
+                                                    })
+                                                    .addOnFailureListener(new OnFailureListener() {
+                                                        @Override
+                                                        public void onFailure(Exception e) {
+                                                            Toast.makeText(AddProjectActivity.this, "Error!", Toast.LENGTH_SHORT).show();
+                                                        }
+                                                    });
+                                        } else {
+                                            Toast.makeText(AddProjectActivity.this, "DB inconsistent!", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                });
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
             }
         });
 

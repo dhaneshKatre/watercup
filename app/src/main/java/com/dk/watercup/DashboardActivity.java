@@ -17,11 +17,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import org.w3c.dom.Text;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -53,8 +56,24 @@ public class DashboardActivity extends AppCompatActivity {
             finish();
         }
 
+        auth = FirebaseAuth.getInstance();
+        final FirebaseUser user = auth.getCurrentUser();
         final ProgressBar daysRem = (ProgressBar) findViewById(R.id.daysRem);
         final TextView noOfDays = findViewById(R.id.noOfDays);
+        final TextView pointView = findViewById(R.id.pointView);
+        final DatabaseReference ref = FirebaseDatabase.getInstance().getReference(user.getUid()).child("points");
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String points = dataSnapshot.getValue(Integer.class) + "";
+                pointView.setText(points);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = database.getReference("final_date");

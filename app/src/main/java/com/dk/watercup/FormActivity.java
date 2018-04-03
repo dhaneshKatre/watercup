@@ -16,6 +16,10 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Random;
+
 public class FormActivity extends AppCompatActivity {
 
     private FirebaseAuth auth;
@@ -29,6 +33,12 @@ public class FormActivity extends AppCompatActivity {
 
         final ProgressDialog pd = new ProgressDialog(this);
         pd.setTitle("On your marks ...");
+
+        final ArrayList<String> coord = new ArrayList<>();
+        coord.add("Mr. Viraj Khedekar,+917894662606");
+        coord.add("Mr. Dhanesh Katre,+917844662656");
+        coord.add("Mr. Utkarsh Aher,+917894662659");
+        coord.add("Mr. Shubham Relekar,+917894642652");
 
         auth = FirebaseAuth.getInstance();
         if(auth.getCurrentUser()==null){
@@ -48,7 +58,8 @@ public class FormActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 pd.show();
-                final VillageModel vm = new VillageModel(vname.getText().toString().trim(), taluka.getText().toString().trim(), phone.getText().toString().trim());
+                Random rn = new Random();
+                final VillageModel vm = new VillageModel(vname.getText().toString().trim(), taluka.getText().toString().trim(), phone.getText().toString().trim(), 0, coord.get(rn.nextInt(4)).split(",")[0], coord.get(rn.nextInt(4)).split(",")[1]);
                 villages.child(user.getUid()).setValue(vm)
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override

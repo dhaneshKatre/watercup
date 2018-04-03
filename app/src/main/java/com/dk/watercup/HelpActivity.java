@@ -40,12 +40,12 @@ public class HelpActivity extends AppCompatActivity {
         });
 
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        final DatabaseReference cordRef = FirebaseDatabase.getInstance().getReference("village").child(user.getUid()).child("coord");
+        final DatabaseReference cordRef = FirebaseDatabase.getInstance().getReference("village").child(user.getUid());
         cordRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                coord.setText(((HashMap<String, String>)dataSnapshot.getValue()).get("name"));
-                phone.setText(((HashMap<String, String>)dataSnapshot.getValue()).get("phone"));
+                coord.setText(dataSnapshot.getValue(VillageModel.class).getcName());
+                phone.setText(dataSnapshot.getValue(VillageModel.class).getcPhone());
             }
 
             @Override
