@@ -121,6 +121,7 @@ public class StatsActivity extends AppCompatActivity {
         dialog.setContentView(R.layout.image_dialog);
         dialog.setCancelable(true);
         final TextView projectName = dialog.findViewById(R.id.projectName);
+        final ImageView projectPhoto = dialog.findViewById(R.id.projectPhoto);
         final File localFile = File.createTempFile("images", "jpg");
         pd.show();
         final StorageReference imageRef = FirebaseStorage.getInstance().getReference(user.getUid()).child(adapter.getRef(pos).getKey());
@@ -132,7 +133,7 @@ public class StatsActivity extends AppCompatActivity {
                         if(task.isSuccessful()){
                             projectName.setText(name);
                             Bitmap image = BitmapFactory.decodeFile(localFile.getAbsolutePath());
-                            projectName.setCompoundDrawables(null, null, null, new BitmapDrawable(getResources(), image));
+                            projectPhoto.setImageBitmap(image);
                             dialog.show();
                         } else {
                             Toast.makeText(StatsActivity.this, "Network!!", Toast.LENGTH_SHORT).show();

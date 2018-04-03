@@ -4,17 +4,28 @@
     android:gravity="center_vertical|center_horizontal"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:padding="5dp"
+    android:layout_width="400dp"
+    android:layout_height="450dp">
 
     <TextView
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
         android:drawablePadding="5dp"
         android:id="@+id/projectName"
         style="?android:attr/textAppearanceLarge"
         android:textColor="#000"
         android:fontFamily="cursive"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_marginBottom="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
+    <ImageView
+        android:id="@+id/projectPhoto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 
 </LinearLayout>

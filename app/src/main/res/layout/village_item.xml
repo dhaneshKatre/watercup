@@ -11,6 +11,7 @@
     <android.support.v7.widget.CardView
         app:cardCornerRadius="8dp"
         android:elevation="10dp"
+        style="@style/CardStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 

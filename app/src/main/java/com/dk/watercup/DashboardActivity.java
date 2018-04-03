@@ -129,7 +129,7 @@ public class DashboardActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.about:
-                Toast.makeText(this, "For Srijan!", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(DashboardActivity.this, FAQActivity.class));
                 return true;
             case R.id.lang:
                 Toast.makeText(this, "Language change!", Toast.LENGTH_SHORT).show();
