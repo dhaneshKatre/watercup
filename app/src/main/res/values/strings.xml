@@ -5,7 +5,6 @@
     <string name="Help">Help</string>
     <string name="app_name">Watercup</string>
     <string name="Entercost">Enter total project cost</string>
-    <string name="Enterdesc">Enter project description</string>
     <string name="selectImage">Select an image to upload</string>
     <string name="reg_form">Registration Form</string>
     <string name="v_name">Enter name of village</string>
@@ -14,8 +13,10 @@
     <string name="done">Done</string>
     <string name="language">Change app language</string>
     <string name="about">About</string>
-    <string name="feedback">Feedback</string>
     <string name="logout">Log out</string>
     <string name="daysRem">Days remaining</string>
     <string name="Entername">Enter project name</string>
+    <string name="Enterdesc">Enter project description</string>
+    <string name="feedback">Feedb</string>
+    <string name="logout">L</string>
 </resources>

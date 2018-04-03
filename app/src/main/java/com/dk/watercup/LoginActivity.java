@@ -29,8 +29,23 @@ public class LoginActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         if(auth.getCurrentUser()!=null){
-            startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
-            finish();
+            final DatabaseReference ref = FirebaseDatabase.getInstance().getReference("village").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+            ref.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if(!dataSnapshot.exists()){
+                        startActivity(new Intent(LoginActivity.this, FormActivity.class));
+                        finish();
+                    } else {
+                        startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
+                        finish();
+                    }
+                }
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    Toast.makeText(LoginActivity.this, "Check Network!", Toast.LENGTH_SHORT).show();
+                }
+            });
         }
     }
 

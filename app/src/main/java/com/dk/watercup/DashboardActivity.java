@@ -2,9 +2,12 @@ package com.dk.watercup;
 
 import android.Manifest;
 import android.animation.ObjectAnimator;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.v4.app.ActivityCompat;
@@ -42,8 +45,23 @@ import java.util.concurrent.TimeUnit;
 
 public class DashboardActivity extends AppCompatActivity {
 
+    private Locale myLocale;
+    private static final String Locale_Preference = "Locale Preference";
+    private static final String Locale_KeyValue = "Saved Locale";
+    private static SharedPreferences sharedPreferences;
+    private static SharedPreferences.Editor editor;
     private FirebaseAuth auth;
     private SQLiteHelper db;
+
+    public void loadLocale() {
+        String language = sharedPreferences.getString(Locale_KeyValue, "");
+        changeLocale(language);
+    }
+
+    private void saveLocale(String lang) {
+        editor.putString(Locale_KeyValue, lang);
+        editor.commit();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,19 +70,44 @@ public class DashboardActivity extends AppCompatActivity {
 
         db = new SQLiteHelper(this);
 
-        if(ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED &&
-                ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
-        }
-
         auth = FirebaseAuth.getInstance();
         if(auth.getCurrentUser()==null){
             startActivity(new Intent(DashboardActivity.this, LoginActivity.class));
             finish();
         }
 
-        auth = FirebaseAuth.getInstance();
+        sharedPreferences = getSharedPreferences(Locale_Preference, Activity.MODE_PRIVATE);
+        editor =sharedPreferences.edit();
+        editor.apply();
+        loadLocale();
+
         final FirebaseUser user = auth.getCurrentUser();
+
+        if(ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED &&
+                ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
+        }
+
+        final TextView rankView = findViewById(R.id.rankView);
+        final DatabaseReference dbr = FirebaseDatabase.getInstance().getReference("village");
+        dbr.orderByChild("points").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                int index = Integer.parseInt(dataSnapshot.getChildrenCount()+"");
+                for(DataSnapshot ds : dataSnapshot.getChildren()){
+                    index--;
+                    if(ds.getKey().equals(user.getUid())){
+                        rankView.setText("Rank: #"+(index+1));
+                    } else continue;
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
         final ProgressBar daysRem = (ProgressBar) findViewById(R.id.daysRem);
         final TextView noOfDays = findViewById(R.id.noOfDays);
         final TextView pointView = findViewById(R.id.pointsView);
@@ -162,6 +205,8 @@ public class DashboardActivity extends AppCompatActivity {
                 startActivity(new Intent(DashboardActivity.this, FAQActivity.class));
                 return true;
             case R.id.lang:
+                String lang = "mr";
+                changeLocale(lang);
                 Toast.makeText(this, "Language change!", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.feedback:
@@ -176,6 +221,20 @@ public class DashboardActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    public void changeLocale(String lang){
+        myLocale = new Locale(lang);
+        saveLocale(lang);
+        Locale.setDefault(myLocale);
+        Configuration config = new Configuration();
+        config.locale = myLocale;
+        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+        updateTexts();
+    }
+
+    private void updateTexts(){
+
     }
 
     @Override

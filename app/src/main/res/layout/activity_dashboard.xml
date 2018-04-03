@@ -89,11 +89,11 @@
                     android:padding="20dp">
 
                     <TextView
+                        android:id="@+id/rankView"
                         style="@style/Base.TextAppearance.AppCompat"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginBottom="10dp"
-                        android:text="Rank: #1"
                         android:textSize="20sp" />
 
                     <TextView
