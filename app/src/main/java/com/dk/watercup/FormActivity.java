@@ -32,7 +32,7 @@ public class FormActivity extends AppCompatActivity {
         final SQLiteHelper db = new SQLiteHelper(this);
 
         final ProgressDialog pd = new ProgressDialog(this);
-        pd.setTitle("On your marks ...");
+        pd.setTitle(R.string.progress_diaload);
 
         final ArrayList<String> coord = new ArrayList<>();
         coord.add("Mr. Viraj Khedekar,+917894662606");
@@ -72,7 +72,7 @@ public class FormActivity extends AppCompatActivity {
                                 }
                                 else {
                                     pd.dismiss();
-                                    Toast.makeText(FormActivity.this, "Check connection!", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(FormActivity.this, R.string.check_Nw, Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });

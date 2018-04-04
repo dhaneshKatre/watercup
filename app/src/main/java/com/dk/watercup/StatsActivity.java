@@ -117,7 +117,7 @@ public class StatsActivity extends AppCompatActivity {
 
     public void showImage(final int pos, final String name) throws IOException {
         final ProgressDialog pd = new ProgressDialog(StatsActivity.this);
-        pd.setTitle("Please wait ...");
+        pd.setTitle(R.string.wait);
         final Dialog dialog = new Dialog(StatsActivity.this);
         dialog.setContentView(R.layout.image_dialog);
         dialog.setCancelable(true);
@@ -137,7 +137,7 @@ public class StatsActivity extends AppCompatActivity {
                             projectPhoto.setImageBitmap(image);
                             dialog.show();
                         } else {
-                            Toast.makeText(StatsActivity.this, "Network!!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(StatsActivity.this, R.string.check_Nw, Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

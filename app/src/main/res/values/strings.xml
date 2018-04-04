@@ -7,9 +7,7 @@
     <string name="Entercost">Enter total project cost</string>
     <string name="Enterdesc">Enter project description</string>
     <string name="selectImage">Select an image to upload</string>
-    <string name="reg_form">Registration Form</string>
-    <string name="v_name">Enter name of village</string>
-    <string name="t_name">Enter taluka of village</string>
+    <string name="t_name">Enter taluka</string>
     <string name="ph_no">Enter contact number</string>
     <string name="done">Done</string>
     <string name="language">Change app language</string>
@@ -18,6 +16,14 @@
     <string name="logout">Log out</string>
     <string name="daysRem">Days remaining</string>
     <string name="Entername">Enter project name</string>
-    <string name="type">Type:</string>
+    <string name="type">"Type:  "</string>
     <string name="English">मराठी</string>
+    <string name="progress_diaload">On your marks ...</string>
+    <string name="check_Nw">Check Network!</string>
+    <string name="phoneShow">"Phone :  "</string>
+    <string name="talukaShow">"Taluka :  "</string>
+    <string name="wait">Please wait...</string>
+    <string name="login_button">Login</string>
+    <string name="reg_form">Registration Form</string>
+    <string name="v_name">Enter name of village</string>
 </resources>
