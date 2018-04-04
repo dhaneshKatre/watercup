@@ -38,8 +38,8 @@ public class LeaderboardActivity extends AppCompatActivity {
             @Override
             protected void populateViewHolder(VillageHolder viewHolder, VillageModel model, int i) {
                 viewHolder.setTName(model.getName());
-                viewHolder.setTextPhone(R.string.phoneShow+model.getPhone());
-                viewHolder.setTextTaluka(R.string.talukaShow+model.getTaluka());
+                viewHolder.setTextPhone(getResources().getString(R.string.phoneShow) + model.getPhone());
+                viewHolder.setTextTaluka(getResources().getString(R.string.talukaShow) + model.getTaluka());
                 viewHolder.setTextPoints(String.valueOf(model.getPoints())+" Points");
             }
         };

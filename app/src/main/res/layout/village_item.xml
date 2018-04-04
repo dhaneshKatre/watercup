@@ -39,15 +39,13 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/textPhone"
-                    android:layout_width="wrap_content"
-                    android:layout_marginEnd="7dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:text="phone"
+                    android:layout_marginBottom="8dp"
                     android:textColor="#000"
                     android:textSize="17sp" />
 
@@ -55,15 +53,13 @@
                     android:id="@+id/textTaluka"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:text="taluka"
+                    android:layout_marginBottom="8dp"
                     android:textColor="#000"
                     android:textSize="17sp" />
             </LinearLayout>
 
             <TextView
                 android:id="@+id/textPoints"
-                android:text="Points"
                 android:textStyle="bold|italic"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

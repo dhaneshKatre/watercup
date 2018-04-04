@@ -27,7 +27,6 @@
     <string name="points">Points: </string>
     <string name="cap">Choose a project</string>
     <string name="type">"Type:  "</string>
-    <string name="English">मराठी</string>
     <string name="progress_diaload">On your marks ...</string>
     <string name="check_Nw">Check Network!</string>
     <string name="phoneShow">"Phone :  "</string>
@@ -40,4 +39,6 @@
     <string name="t_upload">Text Uploaded!</string>
     <string name="err">Error!</string>
     <string name="db_incons">DB inconsistent!</string>
+    <string name="signIn">Enter your email</string>
+    <string name="pass">Enter your password</string>
 </resources>

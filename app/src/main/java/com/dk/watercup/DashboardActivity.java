@@ -46,14 +46,11 @@ import java.util.concurrent.TimeUnit;
 public class DashboardActivity extends AppCompatActivity {
 
     private FirebaseAuth auth;
-    private SQLiteHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
-
-        db = new SQLiteHelper(this);
 
         auth = FirebaseAuth.getInstance();
         if(auth.getCurrentUser()==null){
@@ -194,14 +191,9 @@ public class DashboardActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
-            case R.id.about:
-                startActivity(new Intent(DashboardActivity.this, FAQActivity.class));
-                return true;
             case R.id.logout:
                 auth.signOut();
                 startActivity(new Intent(DashboardActivity.this, LoginActivity.class));
-                db.deleteVillages();
-                db.close();
                 finish();
             default:
                 return super.onOptionsItemSelected(item);

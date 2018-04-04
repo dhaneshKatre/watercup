@@ -28,9 +28,6 @@ public class FormActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form);
-
-        final SQLiteHelper db = new SQLiteHelper(this);
-
         final ProgressDialog pd = new ProgressDialog(this);
         pd.setTitle(R.string.progress_diaload);
 
@@ -66,7 +63,6 @@ public class FormActivity extends AppCompatActivity {
                             public void onComplete(Task<Void> task) {
                                 if(task.isSuccessful()){
                                     pd.dismiss();
-                                    db.addInfo(vm);
                                     startActivity(new Intent(FormActivity.this, DashboardActivity.class));
                                     finish();
                                 }

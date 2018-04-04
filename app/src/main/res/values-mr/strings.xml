@@ -17,9 +17,11 @@
     <string name="language">अॅप्स भाषा बदला</string>
     <string name="about">विषयी</string>
     <string name="feedback">अभिप्राय</string>
-    <string name="logout">बाहेर पडणे</string>
+    <string name="logout">साइन आउट</string>
     <string name="daysRem">उर्वरित दिवस</string>
     <string name="Entername">प्रकल्प नाव प्रविष्ट करा</string>
+    <string name="signIn">तुमचा ईमेल प्रविष्ट करा</string>
+    <string name="pass">आपला संकेतशब्द प्रविष्ट करा</string>
     <string name="English">English</string>
     <string name="guide">मार्गदर्शन</string>
     <string name="gs">आपल्याला मार्गदर्शन मिळेल</string>

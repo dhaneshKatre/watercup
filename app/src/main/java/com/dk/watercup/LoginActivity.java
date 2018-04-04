@@ -28,6 +28,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+
         if(auth.getCurrentUser()!=null){
             startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
             finish();
@@ -38,9 +39,6 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        final SQLiteHelper db = new SQLiteHelper(this);
-
         auth = FirebaseAuth.getInstance();
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference villages = database.getReference("village");
@@ -72,7 +70,6 @@ public class LoginActivity extends AppCompatActivity {
                                                 startActivity(new Intent(LoginActivity.this, FormActivity.class));
                                                 finish();
                                             } else {
-                                                db.addInfo(dataSnapshot.getValue(VillageModel.class));
                                                 startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
                                                 finish();
                                             }
