@@ -1,41 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">watercup</string>
+    <string name="app_name">Watercup</string>
     <string name="Your_Coordinator">आपला समन्वयक</string>
     <string name="About_us">आमच्या विषयी</string>
     <string name="Desc">पाणी फाऊंडेशन 2016 मध्ये ग्रामीण भागात दुष्काळाशी लढण्यासाठी दूरदर्शन मालिकेत सत्यमेव जयतेच्या टीमने स्थापित केलेल्या कंपनीसाठी नॉन-फॉर प्रॉफिट कंपनी आहे. पाणी टंचाई मुख्यत्वे एक मानवनिर्मित परिस्थिती आहे, आणि आमचा असा विश्वास आहे की केवळ लोकांच्या प्रयत्नांमुळे संकट दूर होऊ शकते. पाणी फाउंडेशनचा उद्देश आहे दुष्काळाचे निर्मूलन करण्यासाठी या अभियानामध्ये लोकांना एकत्र आणणे, प्रवृत्त करणे आणि त्यांना प्रशिक्षित करण्यासाठी संवादाची शक्ती वापरणे. आतापर्यंत 9 0 टक्के दुष्काळग्रस्त महाराष्ट्रात पाणि फाऊंडेशनचे वैज्ञानिक वाटरशेड व्यवस्थापन, नेतृत्व आणि समुदाय-उभारणीतील प्रशिक्षण देण्यात येत आहे. पाणलोट व्यवस्थापनात गावाने त्यांचे प्रशिक्षण लागू करण्यासाठी प्रोत्साहित करण्याचा एक मार्ग म्हणून 2016 मध्ये आमच्या प्रमुख प्रकल्पाला, सत्यमेव जयते पाणी कपची स्थापना केली. वॉटर कप 2018 8 एप्रिल ते 22 मे 2018 पर्यंत होणार आहे.</string>
     <string name="Help">मदत</string>
-
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <string name="helpE">अधिक मदत</string>
     <string name="Entercost">एकूण प्रकल्प खर्च प्रविष्ट करा</string>
     <string name="Enterdesc">प्रकल्प वर्णन प्रविष्ट करा</string>
     <string name="selectImage">अपलोड करण्यासाठी प्रतिमा निवडा</string>
@@ -51,4 +21,13 @@
     <string name="daysRem">उर्वरित दिवस</string>
     <string name="Entername">प्रकल्प नाव प्रविष्ट करा</string>
     <string name="English">English</string>
+    <string name="guide">मार्गदर्शन</string>
+    <string name="gs">आपल्याला मार्गदर्शन मिळेल</string>
+    <string name="newProject">नवीन प्रकल्प</string>
+    <string name="npd">येथे नवीन प्रकल्प जोडा</string>
+    <string name="leader">लीडरबोर्ड</string>
+    <string name="vls">लीडरबोर्ड पहा</string>
+    <string name="rank">रँक: #</string>
+    <string name="points">गुण: </string>
+    <string name="cap">प्रकल्प निवडा</string>
 </resources>

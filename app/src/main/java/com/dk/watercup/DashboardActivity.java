@@ -45,23 +45,8 @@ import java.util.concurrent.TimeUnit;
 
 public class DashboardActivity extends AppCompatActivity {
 
-    private Locale myLocale;
-    private static final String Locale_Preference = "Locale Preference";
-    private static final String Locale_KeyValue = "Saved Locale";
-    private static SharedPreferences sharedPreferences;
-    private static SharedPreferences.Editor editor;
     private FirebaseAuth auth;
     private SQLiteHelper db;
-
-    public void loadLocale() {
-        String language = sharedPreferences.getString(Locale_KeyValue, "");
-        changeLocale(language);
-    }
-
-    private void saveLocale(String lang) {
-        editor.putString(Locale_KeyValue, lang);
-        editor.commit();
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,11 +61,6 @@ public class DashboardActivity extends AppCompatActivity {
             finish();
         }
 
-        sharedPreferences = getSharedPreferences(Locale_Preference, Activity.MODE_PRIVATE);
-        editor =sharedPreferences.edit();
-        editor.apply();
-        loadLocale();
-
         final FirebaseUser user = auth.getCurrentUser();
 
         if(ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED &&
@@ -89,6 +69,19 @@ public class DashboardActivity extends AppCompatActivity {
         }
 
         final TextView rankView = findViewById(R.id.rankView);
+        final TextView nameView = findViewById(R.id.nameView);
+        final DatabaseReference refr = FirebaseDatabase.getInstance().getReference("village").child(user.getUid()).child("name");
+        refr.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                nameView.setText(dataSnapshot.getValue(String.class));
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
         final DatabaseReference dbr = FirebaseDatabase.getInstance().getReference("village");
         dbr.orderByChild("points").addValueEventListener(new ValueEventListener() {
             @Override
@@ -97,8 +90,8 @@ public class DashboardActivity extends AppCompatActivity {
                 for(DataSnapshot ds : dataSnapshot.getChildren()){
                     index--;
                     if(ds.getKey().equals(user.getUid())){
-                        rankView.setText("Rank: #"+(index+1));
-                    } else continue;
+                        rankView.setText(rankView.getText().toString() + (index+1));
+                    }
                 }
             }
 
@@ -108,7 +101,7 @@ public class DashboardActivity extends AppCompatActivity {
             }
         });
 
-        final ProgressBar daysRem = (ProgressBar) findViewById(R.id.daysRem);
+        final ProgressBar daysRem = findViewById(R.id.daysRem);
         final TextView noOfDays = findViewById(R.id.noOfDays);
         final TextView pointView = findViewById(R.id.pointsView);
         final DatabaseReference ref = FirebaseDatabase.getInstance().getReference("village").child(user.getUid()).child("points");
@@ -116,7 +109,7 @@ public class DashboardActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String points = dataSnapshot.getValue(Integer.class) + "";
-                pointView.setText("Points: " + points);
+                pointView.setText(pointView.getText().toString() + " "+ points);
             }
 
             @Override
@@ -204,14 +197,6 @@ public class DashboardActivity extends AppCompatActivity {
             case R.id.about:
                 startActivity(new Intent(DashboardActivity.this, FAQActivity.class));
                 return true;
-            case R.id.lang:
-                String lang = "mr";
-                changeLocale(lang);
-                Toast.makeText(this, "Language change!", Toast.LENGTH_SHORT).show();
-                return true;
-            case R.id.feedback:
-                Toast.makeText(this, "Feedback!", Toast.LENGTH_SHORT).show();
-                return true;
             case R.id.logout:
                 auth.signOut();
                 startActivity(new Intent(DashboardActivity.this, LoginActivity.class));
@@ -221,20 +206,6 @@ public class DashboardActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
-
-    public void changeLocale(String lang){
-        myLocale = new Locale(lang);
-        saveLocale(lang);
-        Locale.setDefault(myLocale);
-        Configuration config = new Configuration();
-        config.locale = myLocale;
-        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
-        updateTexts();
-    }
-
-    private void updateTexts(){
-
     }
 
     @Override

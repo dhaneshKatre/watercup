@@ -45,6 +45,12 @@ public class StatsActivity extends AppCompatActivity {
     private FirebaseUser user;
 
     @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stats);
@@ -55,6 +61,40 @@ public class StatsActivity extends AppCompatActivity {
         final RecyclerView projectRecView = findViewById(R.id.projectRecView);
         projectRecView.setLayoutManager(new LinearLayoutManager(this));
 
+        final TextView rankView = findViewById(R.id.statsRankView);
+        final TextView nameView = findViewById(R.id.statsNameView);
+        final DatabaseReference refr = FirebaseDatabase.getInstance().getReference("village").child(user.getUid()).child("name");
+        refr.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                nameView.setText(dataSnapshot.getValue(String.class));
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        final DatabaseReference dbr = FirebaseDatabase.getInstance().getReference("village");
+        dbr.orderByChild("points").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                int index = Integer.parseInt(dataSnapshot.getChildrenCount()+"");
+                for(DataSnapshot ds : dataSnapshot.getChildren()){
+                    index--;
+                    if(ds.getKey().equals(user.getUid())){
+                        rankView.setText(rankView.getText().toString() + (index+1));
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = database.getReference("final_date");
 
@@ -64,7 +104,7 @@ public class StatsActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String points = dataSnapshot.getValue(Integer.class) + "";
-                statsPointsView.setText("Points: " + points);
+                statsPointsView.setText(statsPointsView.getText().toString() + " " + points);
             }
 
             @Override

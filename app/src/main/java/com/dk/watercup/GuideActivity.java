@@ -1,5 +1,6 @@
 package com.dk.watercup;
 
+import android.drm.DrmStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.webkit.WebView;
@@ -14,6 +15,6 @@ public class GuideActivity extends AppCompatActivity {
         final WebView mWebView = findViewById(R.id.videoView);
         mWebView.getSettings().setJavaScriptEnabled(true);
         mWebView.setWebViewClient(new WebViewClient());
-        mWebView.loadUrl("https://www.youtube.com/results?search_query=water+cup");
+        mWebView.loadUrl("https://www.youtube.com/channel/UCUmhrRevHylwk_pLfqwDr0Q/videos");
     }
 }

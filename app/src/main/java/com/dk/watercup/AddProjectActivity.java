@@ -66,7 +66,7 @@ public class AddProjectActivity extends AppCompatActivity {
         final StorageReference villageRef = FirebaseStorage.getInstance().getReference();
 
         final ArrayList<String> projectTypes = new ArrayList<>();
-        projectTypes.add("Choose a project");
+        projectTypes.add(getResources().getString(R.string.cap));
         projectTypes.add("Well");
         projectTypes.add("Trench");
         projectTypes.add("Hapsa");

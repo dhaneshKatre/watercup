@@ -33,7 +33,9 @@
         <activity android:name=".FormActivity" />
         <activity android:name=".StatsActivity" />
         <activity android:name=".LeaderboardActivity" />
-        <activity android:name=".GuideActivity" />
+        <activity
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:name=".GuideActivity" />
         <activity android:name=".FAQActivity" />
     </application>
 
