@@ -6,9 +6,7 @@
     <string name="app_name">Watercup</string>
     <string name="Entercost">Enter total project cost</string>
     <string name="selectImage">Select an image to upload</string>
-    <string name="reg_form">Registration Form</string>
-    <string name="v_name">Enter name of village</string>
-    <string name="t_name">Enter taluka of village</string>
+    <string name="t_name">Enter taluka</string>
     <string name="ph_no">Enter contact number</string>
     <string name="done">Done</string>
     <string name="newProject">New Projects</string>
@@ -21,7 +19,6 @@
     <string name="Entername">Enter project name</string>
     <string name="Enterdesc">Enter project description</string>
     <string name="feedback">Feedb</string>
-    <string name="type">Type:</string>
     <string name="npd">Add new project here</string>
     <string name="vls">View Leaderboard</string>
     <string name="gs">You\'ll get guidance</string>
@@ -29,4 +26,18 @@
     <string name="rank">Rank: #</string>
     <string name="points">Points: </string>
     <string name="cap">Choose a project</string>
+    <string name="type">"Type:  "</string>
+    <string name="English">मराठी</string>
+    <string name="progress_diaload">On your marks ...</string>
+    <string name="check_Nw">Check Network!</string>
+    <string name="phoneShow">"Phone :  "</string>
+    <string name="talukaShow">"Taluka :  "</string>
+    <string name="wait">Please wait ...</string>
+    <string name="login_button">Login</string>
+    <string name="reg_form">Registration Form</string>
+    <string name="v_name">Enter name of village</string>
+    <string name="prop_val">Enter proper values!</string>
+    <string name="t_upload">Text Uploaded!</string>
+    <string name="err">Error!</string>
+    <string name="db_incons">DB inconsistent!</string>
 </resources>

@@ -50,7 +50,7 @@ public class LoginActivity extends AppCompatActivity {
         final Button loginButton = findViewById(R.id.loginButton);
 
         final ProgressDialog pd = new ProgressDialog(LoginActivity.this);
-        pd.setTitle("On your marks ...");
+        pd.setTitle(    R.string.progress_diaload);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,7 +79,7 @@ public class LoginActivity extends AppCompatActivity {
                                         }
                                         @Override
                                         public void onCancelled(DatabaseError databaseError) {
-                                            Toast.makeText(LoginActivity.this, "Check Network!", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(LoginActivity.this, R.string.check_Nw, Toast.LENGTH_SHORT).show();
                                         }
                                     });
                                 }
@@ -95,14 +95,14 @@ public class LoginActivity extends AppCompatActivity {
                                                     }
                                                     else{
                                                         pd.dismiss();
-                                                        Toast.makeText(LoginActivity.this, "Check Network!", Toast.LENGTH_SHORT).show();
+                                                        Toast.makeText(LoginActivity.this, R.string.check_Nw, Toast.LENGTH_SHORT).show();
                                                     }
                                                 }
                                             })
                                             .addOnFailureListener(new OnFailureListener() {
                                                 @Override
                                                 public void onFailure(Exception e) {
-                                                    Toast.makeText(LoginActivity.this, "Check Network!", Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(LoginActivity.this, R.string.check_Nw, Toast.LENGTH_SHORT).show();
                                                 }
                                             });
                                 }
