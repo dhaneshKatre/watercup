@@ -26,4 +26,8 @@
     <string name="login_button">Login</string>
     <string name="reg_form">Registration Form</string>
     <string name="v_name">Enter name of village</string>
+    <string name="prop_val">Enter proper values!</string>
+    <string name="t_upload">Text Uploaded!</string>
+    <string name="err">Error!</string>
+    <string name="db_incons">DB inconsistent!</string>
 </resources>

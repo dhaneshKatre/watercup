@@ -50,7 +50,7 @@ public class LoginActivity extends AppCompatActivity {
         final Button loginButton = findViewById(R.id.loginButton);
 
         final ProgressDialog pd = new ProgressDialog(LoginActivity.this);
-        pd.setTitle(R.string.progress_diaload);
+        pd.setTitle(    R.string.progress_diaload);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override

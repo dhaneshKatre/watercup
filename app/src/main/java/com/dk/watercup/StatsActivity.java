@@ -76,7 +76,7 @@ public class StatsActivity extends AppCompatActivity {
                     progressAnimator.setDuration(1500);
                     progressAnimator.setInterpolator(new LinearInterpolator());
                     progressAnimator.start();
-                    noOfDays.setText(diff.toString());
+                    noOfDays.setText(String.valueOf(diff));
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }

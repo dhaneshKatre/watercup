@@ -67,7 +67,7 @@ public class AddProjectActivity extends AppCompatActivity {
         final StorageReference villageRef = FirebaseStorage.getInstance().getReference();
 
         final ArrayList<String> projectTypes = new ArrayList<>();
-        projectTypes.add("Choose a project");
+        projectTypes.add("Choose project type");
         projectTypes.add("Well");
         projectTypes.add("Trench");
         projectTypes.add("Hapsa");
@@ -79,7 +79,7 @@ public class AddProjectActivity extends AppCompatActivity {
         projectType.setSelection(0);
 
         final ProgressDialog pd = new ProgressDialog(this);
-        pd.setTitle("On your marks ...");
+        pd.setTitle(R.string.progress_diaload);
 
         msg = findViewById(R.id.msg);
         iv = findViewById(R.id.projectImage);
@@ -107,7 +107,7 @@ public class AddProjectActivity extends AppCompatActivity {
                 String description = desc.getText().toString().trim();
                 String Name = name.getText().toString().trim();
                 if(TextUtils.isEmpty(projectCost) || TextUtils.isEmpty(description) || TextUtils.isEmpty(Name)){
-                    Toast.makeText(AddProjectActivity.this, "Enter proper values!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddProjectActivity.this, R.string.prop_val, Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if(iv.getDrawable() == null){
@@ -150,20 +150,20 @@ public class AddProjectActivity extends AppCompatActivity {
                                                         @Override
                                                         public void onComplete(Task<Void> task) {
                                                             if(task.isSuccessful()){
-                                                                Toast.makeText(AddProjectActivity.this, "Text Uploaded!", Toast.LENGTH_SHORT).show();
+                                                                Toast.makeText(AddProjectActivity.this, R.string.t_upload, Toast.LENGTH_SHORT).show();
                                                             } else {
-                                                                Toast.makeText(AddProjectActivity.this, "Check Network!", Toast.LENGTH_SHORT).show();
+                                                                Toast.makeText(AddProjectActivity.this, R.string.check_Nw, Toast.LENGTH_SHORT).show();
                                                             }
                                                         }
                                                     })
                                                     .addOnFailureListener(new OnFailureListener() {
                                                         @Override
                                                         public void onFailure(Exception e) {
-                                                            Toast.makeText(AddProjectActivity.this, "Error!", Toast.LENGTH_SHORT).show();
+                                                            Toast.makeText(AddProjectActivity.this, R.string.err, Toast.LENGTH_SHORT).show();
                                                         }
                                                     });
                                         } else {
-                                            Toast.makeText(AddProjectActivity.this, "DB inconsistent!", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(AddProjectActivity.this, R.string.db_incons, Toast.LENGTH_SHORT).show();
                                         }
                                     }
                                 });

@@ -26,4 +26,9 @@
     <string name="check_Nw">कृपया नेटवर्क तपासा</string>
     <string name="phoneShow">"फोन नंबर :  "</string>
     <string name="talukaShow">"तालुका:  "</string>
+    <string name="login_button">लॉग इन</string>
+    <string name="prop_val">योग्य मूल्य प्रविष्ट करा</string>
+    <string name="t_upload">अपलोड केलेला मजकूर</string>
+    <string name="err">त्रुटी</string>
+    <string name="db_incons">डेटाबेस विसंगत</string>
 </resources>
