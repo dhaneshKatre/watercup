@@ -55,9 +55,6 @@ public class AddProjectActivity extends AppCompatActivity {
             finalImage = Uri.parse(path);
             msg.setVisibility(View.GONE);
         }
-        else {
-            Toast.makeText(this, "Permission issues!", Toast.LENGTH_SHORT).show();
-        }
     }
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -157,7 +154,8 @@ public class AddProjectActivity extends AppCompatActivity {
                                                         @Override
                                                         public void onComplete(Task<Void> task) {
                                                             if(task.isSuccessful()){
-                                                                Toast.makeText(AddProjectActivity.this, R.string.t_upload, Toast.LENGTH_SHORT).show();
+                                                                //
+                                                                // Toast.makeText(AddProjectActivity.this, R.string.t_upload, Toast.LENGTH_SHORT).show();
                                                             } else {
                                                                 Toast.makeText(AddProjectActivity.this, R.string.check_Nw, Toast.LENGTH_SHORT).show();
                                                             }
@@ -166,7 +164,7 @@ public class AddProjectActivity extends AppCompatActivity {
                                                     .addOnFailureListener(new OnFailureListener() {
                                                         @Override
                                                         public void onFailure(Exception e) {
-                                                            Toast.makeText(AddProjectActivity.this, R.string.err, Toast.LENGTH_SHORT).show();
+                                                            //Toast.makeText(AddProjectActivity.this, R.string.err, Toast.LENGTH_SHORT).show();
                                                         }
                                                     });
                                         } else {

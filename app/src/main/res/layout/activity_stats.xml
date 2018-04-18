@@ -32,7 +32,6 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:layout_above="@id/daysRem"
                     android:id="@+id/storage_text_view"
                     style="@style/Base.TextAppearance.AppCompat"
                     android:layout_width="wrap_content"

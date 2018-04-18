@@ -83,7 +83,7 @@ public class StatsActivity extends AppCompatActivity {
                 for(DataSnapshot ds : dataSnapshot.getChildren()){
                     index--;
                     if(ds.getKey().equals(user.getUid())){
-                        rankView.setText(rankView.getText().toString() + (index+1));
+                        rankView.setText(getResources().getString(R.string.rank) + (index+1));
                     }
                 }
             }
@@ -104,7 +104,7 @@ public class StatsActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String points = dataSnapshot.getValue(Integer.class) + "";
-                statsPointsView.setText(statsPointsView.getText().toString() + " " + points);
+                statsPointsView.setText(getResources().getString(R.string.points) + " " + points);
             }
 
             @Override
@@ -173,6 +173,7 @@ public class StatsActivity extends AppCompatActivity {
     public void showImage(final int pos, final String name) throws IOException {
         final ProgressDialog pd = new ProgressDialog(StatsActivity.this);
         pd.setTitle(R.string.wait);
+        pd.setCancelable(false);
         final Dialog dialog = new Dialog(StatsActivity.this);
         dialog.setContentView(R.layout.image_dialog);
         dialog.setCancelable(true);

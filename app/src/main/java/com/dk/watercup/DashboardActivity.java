@@ -46,6 +46,7 @@ import java.util.concurrent.TimeUnit;
 public class DashboardActivity extends AppCompatActivity {
 
     private FirebaseAuth auth;
+    private String name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +72,8 @@ public class DashboardActivity extends AppCompatActivity {
         refr.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                nameView.setText(dataSnapshot.getValue(String.class));
+                name = dataSnapshot.getValue(String.class);
+                nameView.setText(name);
             }
 
             @Override
@@ -87,7 +89,7 @@ public class DashboardActivity extends AppCompatActivity {
                 for(DataSnapshot ds : dataSnapshot.getChildren()){
                     index--;
                     if(ds.getKey().equals(user.getUid())){
-                        rankView.setText(rankView.getText().toString() + (index+1));
+                        rankView.setText(getResources().getString(R.string.rank) + (index+1));
                     }
                 }
             }
@@ -106,7 +108,7 @@ public class DashboardActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String points = dataSnapshot.getValue(Integer.class) + "";
-                pointView.setText(pointView.getText().toString() + " "+ points);
+                pointView.setText(getResources().getString(R.string.points) + " " + points);
             }
 
             @Override
@@ -183,7 +185,9 @@ public class DashboardActivity extends AppCompatActivity {
         leaderBoard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(DashboardActivity.this,LeaderboardActivity.class));
+                Intent intent = new Intent(DashboardActivity.this,LeaderboardActivity.class);
+                intent.putExtra("Name", name);
+                startActivity(intent);
             }
         });
     }
